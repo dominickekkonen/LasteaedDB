@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Lasteaed.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="LasteaedStoreContainer" />
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Lasteaed" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="LasteaedContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="RühmSet" EntityType="Lasteaed.Rühm" />
+          <EntitySet Name="AmetSet" EntityType="Lasteaed.Amet" />
+          <EntitySet Name="LasteaedSet" EntityType="Lasteaed.Lasteaed" />
+          <EntitySet Name="KasvatajadSet" EntityType="Lasteaed.Kasvatajad" />
+          <AssociationSet Name="LasteaedRühm" Association="Lasteaed.LasteaedRühm">
+            <End Role="Lasteaed" EntitySet="LasteaedSet" />
+            <End Role="Rühm" EntitySet="RühmSet" />
+          </AssociationSet>
+          <AssociationSet Name="AmetKasvatajad" Association="Lasteaed.AmetKasvatajad">
+            <End Role="Amet" EntitySet="AmetSet" />
+            <End Role="Kasvatajad" EntitySet="KasvatajadSet" />
+          </AssociationSet>
+          <AssociationSet Name="LasteaedKasvatajad" Association="Lasteaed.LasteaedKasvatajad">
+            <End Role="Lasteaed" EntitySet="LasteaedSet" />
+            <End Role="Kasvatajad" EntitySet="KasvatajadSet" />
+          </AssociationSet>
+          <EntitySet Name="TöötamiseAjaluguSet" EntityType="Lasteaed.TöötamiseAjalugu" />
+          <EntitySet Name="RühmKasvatajadSet" EntityType="Lasteaed.RühmKasvatajad" />
+          <EntitySet Name="LapsSet" EntityType="Lasteaed.Laps" />
+          <AssociationSet Name="AmetTöötamiseAjalugu" Association="Lasteaed.AmetTöötamiseAjalugu">
+            <End Role="Amet" EntitySet="AmetSet" />
+            <End Role="TöötamiseAjalugu" EntitySet="TöötamiseAjaluguSet" />
+          </AssociationSet>
+          <AssociationSet Name="KasvatajadTöötamiseAjalugu" Association="Lasteaed.KasvatajadTöötamiseAjalugu">
+            <End Role="Kasvatajad" EntitySet="KasvatajadSet" />
+            <End Role="TöötamiseAjalugu" EntitySet="TöötamiseAjaluguSet" />
+          </AssociationSet>
+          <AssociationSet Name="RühmRühmKasvatajad" Association="Lasteaed.RühmRühmKasvatajad">
+            <End EntitySet="RühmSet" Role="Rühm" />
+            <End EntitySet="RühmKasvatajadSet" Role="RühmKasvatajad" />
+          </AssociationSet>
+          <AssociationSet Name="KasvatajadRühmKasvatajad" Association="Lasteaed.KasvatajadRühmKasvatajad">
+            <End Role="Kasvatajad" EntitySet="KasvatajadSet" />
+            <End Role="RühmKasvatajad" EntitySet="RühmKasvatajadSet" />
+          </AssociationSet>
+          <EntitySet Name="LapsevanemSet" EntityType="Lasteaed.Lapsevanem" />
+          <EntitySet Name="PereSet" EntityType="Lasteaed.Pere" />
+          <AssociationSet Name="LapsPere" Association="Lasteaed.LapsPere">
+            <End Role="Laps" EntitySet="LapsSet" />
+            <End Role="Pere" EntitySet="PereSet" />
+          </AssociationSet>
+          <AssociationSet Name="LapsevanemPere" Association="Lasteaed.LapsevanemPere">
+            <End Role="Lapsevanem" EntitySet="LapsevanemSet" />
+            <End Role="Pere" EntitySet="PereSet" />
+          </AssociationSet>
+          <EntitySet Name="LapsRühmSet" EntityType="Lasteaed.LapsRühm" />
+          <AssociationSet Name="RühmLapsRühm" Association="Lasteaed.RühmLapsRühm">
+            <End Role="Rühm" EntitySet="RühmSet" />
+            <End Role="LapsRühm" EntitySet="LapsRühmSet" />
+          </AssociationSet>
+          <AssociationSet Name="LapsLapsRühm" Association="Lasteaed.LapsLapsRühm">
+            <End Role="Laps" EntitySet="LapsSet" />
+            <End Role="LapsRühm" EntitySet="LapsRühmSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Rühm">
+          <Key>
+            <PropertyRef Name="rühmID" />
+          </Key>
+          <Property Name="rühmID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ruhmNimi" Type="String" Nullable="false" />
+          <NavigationProperty Name="Lasteaed" Relationship="Lasteaed.LasteaedRühm" FromRole="Rühm" ToRole="Lasteaed" />
+          <NavigationProperty Name="RühmKasvatajad" Relationship="Lasteaed.RühmRühmKasvatajad" FromRole="Rühm" ToRole="RühmKasvatajad" />
+          <NavigationProperty Name="LapsRühm" Relationship="Lasteaed.RühmLapsRühm" FromRole="Rühm" ToRole="LapsRühm" />
+          </EntityType>
+        <EntityType Name="Amet">
+          <Key>
+            <PropertyRef Name="ametID" />
+          </Key>
+          <Property Name="ametID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ametNimi" Type="String" Nullable="false" />
+          <NavigationProperty Name="Kasvatajad" Relationship="Lasteaed.AmetKasvatajad" FromRole="Amet" ToRole="Kasvatajad" />
+          <NavigationProperty Name="TöötamiseAjalugu" Relationship="Lasteaed.AmetTöötamiseAjalugu" FromRole="Amet" ToRole="TöötamiseAjalugu" />
+        </EntityType>
+        <EntityType Name="Lasteaed">
+          <Key>
+            <PropertyRef Name="lasteaedID" />
+          </Key>
+          <Property Name="lasteaedID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="lasteaedNimi" Type="String" Nullable="false" />
+          <Property Name="lasteaedAadress" Type="String" Nullable="false" />
+          <Property Name="lasteaedTel" Type="String" Nullable="false" />
+          <NavigationProperty Name="Rühm" Relationship="Lasteaed.LasteaedRühm" FromRole="Lasteaed" ToRole="Rühm" />
+          <NavigationProperty Name="Kasvatajad" Relationship="Lasteaed.LasteaedKasvatajad" FromRole="Lasteaed" ToRole="Kasvatajad" />
+        </EntityType>
+        <EntityType Name="Kasvatajad">
+          <Key>
+            <PropertyRef Name="kasvatajaID" />
+          </Key>
+          <Property Name="kasvatajaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kasvatajaNimi" Type="String" Nullable="false" />
+          <Property Name="kasvatajaPerenimi" Type="String" Nullable="false" />
+          <Property Name="kasvatajaTel" Type="String" Nullable="false" />
+          <NavigationProperty Name="Amet" Relationship="Lasteaed.AmetKasvatajad" FromRole="Kasvatajad" ToRole="Amet" />
+          <NavigationProperty Name="Lasteaed" Relationship="Lasteaed.LasteaedKasvatajad" FromRole="Kasvatajad" ToRole="Lasteaed" />
+          <NavigationProperty Name="TöötamiseAjalugu" Relationship="Lasteaed.KasvatajadTöötamiseAjalugu" FromRole="Kasvatajad" ToRole="TöötamiseAjalugu" />
+          <NavigationProperty Name="RühmKasvatajad" Relationship="Lasteaed.KasvatajadRühmKasvatajad" FromRole="Kasvatajad" ToRole="RühmKasvatajad" />
+        </EntityType>
+        <Association Name="LasteaedRühm">
+          <End Type="Lasteaed.Lasteaed" Role="Lasteaed" Multiplicity="1" />
+          <End Type="Lasteaed.Rühm" Role="Rühm" Multiplicity="*" />
+        </Association>
+        <Association Name="AmetKasvatajad">
+          <End Type="Lasteaed.Amet" Role="Amet" Multiplicity="1" />
+          <End Type="Lasteaed.Kasvatajad" Role="Kasvatajad" Multiplicity="*" />
+        </Association>
+        <Association Name="LasteaedKasvatajad">
+          <End Type="Lasteaed.Lasteaed" Role="Lasteaed" Multiplicity="1" />
+          <End Type="Lasteaed.Kasvatajad" Role="Kasvatajad" Multiplicity="*" />
+        </Association>
+        <EntityType Name="TöötamiseAjalugu">
+          <Key>
+            <PropertyRef Name="TöötamiseAjaluguID" />
+          </Key>
+          <Property Name="TöötamiseAjaluguID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AlguseAeg" Type="String" Nullable="false" />
+          <NavigationProperty Name="Amet" Relationship="Lasteaed.AmetTöötamiseAjalugu" FromRole="TöötamiseAjalugu" ToRole="Amet" />
+          <NavigationProperty Name="Kasvatajad" Relationship="Lasteaed.KasvatajadTöötamiseAjalugu" FromRole="TöötamiseAjalugu" ToRole="Kasvatajad" />
+        </EntityType>
+        <EntityType Name="RühmKasvatajad">
+          <Key>
+            <PropertyRef Name="ruhmKasvajaID" />
+          </Key>
+          <Property Name="ruhmKasvajaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Rühm" Relationship="Lasteaed.RühmRühmKasvatajad" FromRole="RühmKasvatajad" ToRole="Rühm" />
+          <NavigationProperty Name="Kasvatajad" Relationship="Lasteaed.KasvatajadRühmKasvatajad" FromRole="RühmKasvatajad" ToRole="Kasvatajad" />
+        </EntityType>
+        <EntityType Name="Laps">
+          <Key>
+            <PropertyRef Name="lapsID" />
+          </Key>
+          <Property Name="lapsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="lapsNimi" Type="String" Nullable="false" />
+          <Property Name="lapsPerenimi" Type="String" Nullable="false" />
+          <Property Name="lapsIsikukood" Type="String" Nullable="false" />
+          <Property Name="lapsVanus" Type="String" Nullable="false" />
+          <NavigationProperty Name="Pere" Relationship="Lasteaed.LapsPere" FromRole="Laps" ToRole="Pere" />
+          <NavigationProperty Name="LapsRühm" Relationship="Lasteaed.LapsLapsRühm" FromRole="Laps" ToRole="LapsRühm" />
+        </EntityType>
+        <Association Name="AmetTöötamiseAjalugu">
+          <End Type="Lasteaed.Amet" Role="Amet" Multiplicity="1" />
+          <End Type="Lasteaed.TöötamiseAjalugu" Role="TöötamiseAjalugu" Multiplicity="*" />
+        </Association>
+        <Association Name="KasvatajadTöötamiseAjalugu">
+          <End Type="Lasteaed.Kasvatajad" Role="Kasvatajad" Multiplicity="1" />
+          <End Type="Lasteaed.TöötamiseAjalugu" Role="TöötamiseAjalugu" Multiplicity="*" />
+        </Association>
+        <Association Name="RühmRühmKasvatajad">
+          <End Type="Lasteaed.Rühm" Multiplicity="1" Role="Rühm" />
+          <End Type="Lasteaed.RühmKasvatajad" Multiplicity="*" Role="RühmKasvatajad" />
+        </Association>
+        <Association Name="KasvatajadRühmKasvatajad">
+          <End Type="Lasteaed.Kasvatajad" Role="Kasvatajad" Multiplicity="1" />
+          <End Type="Lasteaed.RühmKasvatajad" Role="RühmKasvatajad" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Lapsevanem">
+          <Key>
+            <PropertyRef Name="lapsevanemID" />
+          </Key>
+          <Property Name="lapsevanemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="lapsevanemNimi" Type="String" Nullable="false" />
+          <Property Name="lapsevanemPerenimi" Type="String" Nullable="false" />
+          <Property Name="lapsevanemTel" Type="String" Nullable="false" />
+          <Property Name="lapsevanemEpost" Type="String" Nullable="false" />
+          <Property Name="lapsevanemIsikukood" Type="String" Nullable="false" />
+          <NavigationProperty Name="Pere" Relationship="Lasteaed.LapsevanemPere" FromRole="Lapsevanem" ToRole="Pere" />
+        </EntityType>
+        <EntityType Name="Pere">
+          <Key>
+            <PropertyRef Name="pereID" />
+          </Key>
+          <Property Name="pereID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Laps" Relationship="Lasteaed.LapsPere" FromRole="Pere" ToRole="Laps" />
+          <NavigationProperty Name="Lapsevanem" Relationship="Lasteaed.LapsevanemPere" FromRole="Pere" ToRole="Lapsevanem" />
+        </EntityType>
+        <Association Name="LapsPere">
+          <End Type="Lasteaed.Laps" Role="Laps" Multiplicity="1" />
+          <End Type="Lasteaed.Pere" Role="Pere" Multiplicity="*" />
+        </Association>
+        <Association Name="LapsevanemPere">
+          <End Type="Lasteaed.Lapsevanem" Role="Lapsevanem" Multiplicity="1" />
+          <End Type="Lasteaed.Pere" Role="Pere" Multiplicity="*" />
+        </Association>
+        <EntityType Name="LapsRühm">
+          <Key>
+            <PropertyRef Name="lapsRühmID" />
+          </Key>
+          <Property Name="lapsRühmID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Rühm" Relationship="Lasteaed.RühmLapsRühm" FromRole="LapsRühm" ToRole="Rühm" />
+          <NavigationProperty Name="Laps" Relationship="Lasteaed.LapsLapsRühm" FromRole="LapsRühm" ToRole="Laps" />
+        </EntityType>
+        <Association Name="RühmLapsRühm">
+          <End Type="Lasteaed.Rühm" Role="Rühm" Multiplicity="1" />
+          <End Type="Lasteaed.LapsRühm" Role="LapsRühm" Multiplicity="*" />
+        </Association>
+        <Association Name="LapsLapsRühm">
+          <End Type="Lasteaed.Laps" Role="Laps" Multiplicity="1" />
+          <End Type="Lasteaed.LapsRühm" Role="LapsRühm" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LasteaedStoreContainer" CdmEntityContainer="LasteaedContainer">
+    </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

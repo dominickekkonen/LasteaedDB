@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2140f0da7b554eb69ee17e287c3695bf" Name="Diagram1" ZoomLevel="86" >
+        <EntityTypeShape EntityType="Lasteaed.Rühm" Width="1.5" PointX="3.625" PointY="1.625" />
+        <EntityTypeShape EntityType="Lasteaed.Amet" Width="1.5" PointX="1.75" PointY="1.625" />
+        <EntityTypeShape EntityType="Lasteaed.Lasteaed" PointX="7" PointY="1.25" Width="1.5" />
+        <EntityTypeShape EntityType="Lasteaed.Kasvatajad" Width="1.5" PointX="7" PointY="4" />
+        <AssociationConnector Association="Lasteaed.LasteaedRühm" />
+        <AssociationConnector Association="Lasteaed.AmetKasvatajad" />
+        <AssociationConnector Association="Lasteaed.LasteaedKasvatajad" />
+        <EntityTypeShape EntityType="Lasteaed.TöötamiseAjalugu" Width="1.5" PointX="10" PointY="1.125" />
+        <EntityTypeShape EntityType="Lasteaed.RühmKasvatajad" Width="1.5" PointX="12.375" PointY="1.125" />
+        <EntityTypeShape EntityType="Lasteaed.Laps" Width="1.5" PointX="11.375" PointY="5.625" />
+        <AssociationConnector Association="Lasteaed.AmetTöötamiseAjalugu" ManuallyRouted="false" >
+        </AssociationConnector>
+        <AssociationConnector Association="Lasteaed.KasvatajadTöötamiseAjalugu" />
+        <AssociationConnector Association="Lasteaed.RühmRühmKasvatajad"></AssociationConnector>
+        <AssociationConnector Association="Lasteaed.KasvatajadRühmKasvatajad" />
+        <EntityTypeShape EntityType="Lasteaed.Lapsevanem" Width="1.5" PointX="13.625" PointY="5.625" />
+        <EntityTypeShape EntityType="Lasteaed.Pere" Width="1.5" PointX="9" PointY="6.75" />
+        <AssociationConnector Association="Lasteaed.LapsPere" />
+        <AssociationConnector Association="Lasteaed.LapsevanemPere" />
+        <EntityTypeShape EntityType="Lasteaed.LapsRühm" Width="1.5" PointX="4.875" PointY="5.125" />
+        <AssociationConnector Association="Lasteaed.RühmLapsRühm" />
+        <AssociationConnector Association="Lasteaed.LapsLapsRühm" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
